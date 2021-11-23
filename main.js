@@ -59,6 +59,8 @@ const posts = [
 
 // con questa funzione aggiungo al container gli elementi di un dato array
 function getPost(array){
+    // dichiaro gli oggetti del mio array che andrò ad usare
+    const {id, content, media, author, likes, created} = array;
 
     const container = document.getElementById('container');
     container.innerHTML += 
@@ -66,17 +68,17 @@ function getPost(array){
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src=${array.author.image} alt=${array.author.name}>
+                    <img class="profile-pic" src=${author.image} alt=${author.name}>
                 </div>
                 <div class="post-meta__data">
-                    <div class="post-meta__author">${array.author.name}</div>
-                    <div class="post-meta__time">${array.created}</div>
+                    <div class="post-meta__author">${author.name}</div>
+                    <div class="post-meta__time">${created}</div>
                 </div>                    
             </div>
         </div>
-        <div class="post__text">${array.content}</div>
+        <div class="post__text">${content}</div>
         <div class="post__image">
-            <img src=${array.media} alt="${array.author.name}">
+            <img src=${media} alt="${author.name}">
         </div>
         <div class="post__footer">
             <div class="likes js-likes">
@@ -87,12 +89,60 @@ function getPost(array){
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${array.likes}</b> persone
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                 </div>
             </div> 
         </div>
     </div>`
 }
+
+// versione senza destructuring della funzione sopra ->>
+
+// const container = document.getElementById('container');
+// container.innerHTML += 
+// `<div class="post">
+//     <div class="post__header">
+//         <div class="post-meta">                    
+//             <div class="post-meta__icon">
+//                 // // <img class="profile-pic" src=${array.author.image} alt=${array.author.name}>
+
+//                 <img class="profile-pic" src=${author.image} alt=${author.name}>
+//             </div>
+//             <div class="post-meta__data">
+//                 // // <div class="post-meta__author">${array.author.name}</div>
+//                 // // <div class="post-meta__time">${array.created}</div>
+
+//                 <div class="post-meta__author">${author.name}</div>
+//                 <div class="post-meta__time">${created}</div>
+//             </div>                    
+//         </div>
+//     </div>
+//     // // <div class="post__text">${array.content}</div>
+
+//     <div class="post__text">${content}</div>
+//     <div class="post__image">
+//         // // <img src=${array.media} alt="${array.author.name}">
+
+//         <img src=${media} alt="${author.name}">
+//     </div>
+//     <div class="post__footer">
+//         <div class="likes js-likes">
+//             <div class="likes__cta">
+//                 <a class="like-button  js-like-button" href="#" data-postid="1">
+//                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+//                     <span class="like-button__label">Mi Piace</span>
+//                 </a>
+//             </div>
+//             <div class="likes__counter">
+//             // // Piace a <b id="like-counter-1" class="js-likes-counter">${array.likes}</b> persone
+
+//                 Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+//             </div>
+//         </div> 
+//     </div>
+// </div>`
+// }
+
 
 // ciclo con cui aggiungo di volta in volta tutti gli oggetti del mio array
 for(let i = 0; i < posts.length; i++){
